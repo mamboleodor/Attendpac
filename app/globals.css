@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #FFFFFF;
+  color: #1C1C1C;
+}
+
+.hover-bright:hover { filter: brightness(1.2); }
+.hover-dark:hover { filter: brightness(0.85); }
+
+.btn-primary {
+  background-color: #EB5733;
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 24px;
+  padding: 12px 24px;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.15s ease;
+}
+
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: #1C1C1C;
+  border: 1px solid #E5E5E0;
+  font-weight: 700;
+  border-radius: 24px;
+  padding: 12px 24px;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.15s ease;
+}
+
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E5E0;
+  border-radius: 16px;
+  padding: 24px;
+}
