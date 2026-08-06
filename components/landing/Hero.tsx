@@ -1,29 +1,36 @@
 import Link from "next/link";
+import Threads from "@/components/Threads";
 
 export default function Hero() {
   return (
-    <section className="bg-neutral-lightBeige">
-      <div className="max-w-6xl mx-auto px-6 py-20 flex flex-col items-start gap-6">
-        <span className="rounded-pill bg-neutral-beigeButton text-brand-orange text-xs font-bold px-4 py-2">
-          Built for field teams, not just office desks
-        </span>
-        <h1 className="text-[25px] md:text-[44px] font-black text-brand-darkGray leading-tight max-w-3xl">
-          Attendance software that works where your team actually works
+    <section className="relative bg-neutral-lightBeige overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Threads
+          color={[0.92, 0.34, 0.2]}
+          amplitude={1.2}
+          distance={0.2}
+          enableMouseInteraction
+        />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 md:py-28 flex flex-col items-center text-center gap-6">
+        <h1 className="text-[32px] md:text-[52px] font-black text-brand-darkGray leading-tight">
+          Attendance software that works <br className="max-lg:hidden" />
+          where your team actually works
         </h1>
+
         <p className="text-neutral-gray4 max-w-2xl text-base md:text-lg">
           GPS geofencing, biometric clock-in, and offline sync for on-site and
           field staff, with live dashboards for every manager and org admin.
         </p>
-        <div className="flex gap-4">
+
+        <div className="flex gap-4 mt-2">
           <Link href="/login" className="btn-primary hover-bright">
-            Start free
+            Start free →
           </Link>
           <a href="#faq" className="btn-secondary hover-dark">
             Book a demo
           </a>
-        </div>
-        <div className="w-full mt-8 rounded-xl bg-neutral-beigeBg h-72 flex items-center justify-center text-neutral-gray3 text-sm">
-          Product screenshot: manager dashboard / mobile home screen
         </div>
       </div>
     </section>

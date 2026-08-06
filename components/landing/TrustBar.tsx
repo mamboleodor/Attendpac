@@ -1,9 +1,12 @@
-const companies = [
-  "Nairobi Facilities Ltd",
-  "Coastline Logistics",
-  "Savannah Security Co",
-  "Rift Valley Retail",
-  "Mombasa Freight Co",
+import LogoLoop from "@/components/LogoLoop";
+import type { LogoItem } from "@/components/LogoLoop";
+
+const companies: LogoItem[] = [
+  { node: <span className="font-medium text-brand-darkGray">Nairobi Facilities Ltd</span> },
+  { node: <span className="font-medium text-brand-darkGray">Coastline Logistics</span> },
+  { node: <span className="font-medium text-brand-darkGray">Savannah Security Co</span> },
+  { node: <span className="font-medium text-brand-darkGray">Rift Valley Retail</span> },
+  { node: <span className="font-medium text-brand-darkGray">Mombasa Freight Co</span> },
 ];
 
 export default function TrustBar() {
@@ -13,16 +16,16 @@ export default function TrustBar() {
         <p className="text-center text-sm text-neutral-gray3 mb-6">
           Trusted by growing teams across East Africa
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          {companies.map((name) => (
-            <span
-              key={name}
-              className="rounded-pill bg-neutral-beigeFill text-brand-darkGray text-sm font-medium px-4 py-2"
-            >
-              {name}
-            </span>
-          ))}
-        </div>
+        <LogoLoop
+          logos={companies}
+          speed={40}
+          direction="left"
+          gap={48}
+          pauseOnHover
+          fadeOut
+          fadeOutColor="#FFFFFF"
+          ariaLabel="Companies using AttendPAC"
+        />
       </div>
     </section>
   );

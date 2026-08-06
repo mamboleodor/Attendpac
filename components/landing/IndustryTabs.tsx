@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import CardSwap, { Card } from "@/components/CardSwap";
 
 const industries = [
   {
@@ -13,36 +11,49 @@ const industries = [
       "Real-time visibility across every site",
     ],
   },
-  { label: "Security & Guarding", title: "Built for security teams", features: [
+  {
+    label: "Security & Guarding",
+    title: "Built for security teams",
+    features: [
       "GPS-verified clock-in at every post",
       "Geofences scoped to each site",
       "Offline mode - syncs when back online",
       "Real-time visibility across every post",
-    ] },
-  { label: "Retail & Warehousing", title: "Built for retail & warehouse teams", features: [
+    ],
+  },
+  {
+    label: "Retail & Warehousing",
+    title: "Built for retail & warehouse teams",
+    features: [
       "Kiosk clock-in for shared terminals",
       "Shift rosters per store or warehouse",
       "Overtime flagging by policy",
       "Live dashboards across locations",
-    ] },
-  { label: "Logistics", title: "Built for logistics teams", features: [
+    ],
+  },
+  {
+    label: "Logistics",
+    title: "Built for logistics teams",
+    features: [
       "GPS-verified clock-in for depots and routes",
       "Offline mode for low-signal areas",
       "Exception alerts for no-shows",
       "Payroll export to your provider",
-    ] },
-  { label: "Manufacturing", title: "Built for manufacturing teams", features: [
+    ],
+  },
+  {
+    label: "Manufacturing",
+    title: "Built for manufacturing teams",
+    features: [
       "Biometric clock-in on the shop floor",
       "Shift builder per line or site",
       "Overtime rules by policy",
       "Custom reports by site or role",
-    ] },
+    ],
+  },
 ];
 
 export default function IndustryTabs() {
-  const [active, setActive] = useState(0);
-  const industry = industries[active];
-
   return (
     <section id="solutions" className="bg-neutral-lightBeige">
       <div className="max-w-6xl mx-auto px-6 py-20">
@@ -53,41 +64,35 @@ export default function IndustryTabs() {
           One platform, tuned for every kind of team
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-10">
-          {industries.map((ind, i) => (
-            <button
-              key={ind.label}
-              onClick={() => setActive(i)}
-              className={`rounded-pill px-4 py-2 text-sm font-bold border ${
-                i === active
-                  ? "bg-brand-orange text-white border-brand-orange"
-                  : "bg-white text-brand-darkGray border-neutral-lightBorder"
-              }`}
+        <div className="flex justify-center">
+          <div className="relative" style={{ width: 460, height: 520 }}>
+            <CardSwap
+              width={420}
+              height={300}
+              cardDistance={50}
+              verticalDistance={55}
+              delay={3500}
+              pauseOnHover
+              skewAmount={4}
+              easing="elastic"
             >
-              {ind.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h3 className="text-xl font-bold text-brand-darkGray mb-4">
-              {industry.title}
-            </h3>
-            <ul className="space-y-3 mb-6">
-              {industry.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-neutral-gray4">
-                  <span className="text-brand-orange font-bold">•</span>
-                  {f}
-                </li>
+              {industries.map((ind) => (
+                <Card
+                  key={ind.label}
+                  customClass="!bg-brand-charcoal !border-brand-orange/40 p-6 flex flex-col justify-start text-white"
+                >
+                  <span className="text-xs font-bold text-brand-orange uppercase tracking-wide mb-2">
+                    {ind.label}
+                  </span>
+                  <h3 className="text-lg font-bold mb-3">{ind.title}</h3>
+                  <ul className="space-y-2 text-sm text-neutral-secondaryText">
+                    {ind.features.map((f) => (
+                      <li key={f}>• {f}</li>
+                    ))}
+                  </ul>
+                </Card>
               ))}
-            </ul>
-            <a href="#" className="font-bold text-brand-orange">
-              See {industry.label} features →
-            </a>
-          </div>
-          <div className="rounded-xl bg-neutral-beigeBg h-64 flex items-center justify-center text-neutral-gray3 text-sm">
-            Field worker clock-in screenshot
+            </CardSwap>
           </div>
         </div>
       </div>
