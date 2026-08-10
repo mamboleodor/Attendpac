@@ -3,60 +3,97 @@
 import { useState } from "react";
 import SignInForm from "@/components/auth/SignInForm";
 import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
-import FeatureCarousel from "@/components/auth/FeatureCarousel";
+
+const proof = [
+  {
+    stat: "94%",
+    statColor: "text-success-green",
+    label: "ATTENDANCE TODAY",
+    quote: "GPS clock-in meant no more chasing timesheets across four sites.",
+    initials: "AW",
+    name: "Amina Wanjiru",
+    role: "Ops Manager, Nairobi Facilities Ltd",
+  },
+  {
+    stat: "+18.6%",
+    statColor: "text-brand-orange",
+    label: "ON-TIME RATE",
+    quote: "Offline mode alone paid for the switch — our depots barely have signal.",
+    initials: "JO",
+    name: "James Otieno",
+    role: "Site Lead, Mombasa Freight Co",
+  },
+  {
+    stat: "76%→94%",
+    statColor: "text-[#2563EB]",
+    label: "SITE ROLLOUT",
+    quote: "Payroll export dropped our month-end close from days to an afternoon.",
+    initials: "GK",
+    name: "Grace Kamau",
+    role: "Finance, Rift Valley Retail",
+  },
+];
+
 export default function LoginPage() {
   const [mode, setMode] = useState<"signin" | "forgot">("signin");
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center bg-neutral-lightBeige p-4 overflow-hidden">
-      {/* Soft blurred color blobs behind the glass card */}
-      <div className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-brand-orange/40 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-brand-orange/30 blur-3xl" />
-      <div className="pointer-events-none absolute top-1/3 right-1/4 h-72 w-72 rounded-full bg-white blur-3xl opacity-60" />
+    <main className="min-h-screen bg-white flex flex-col items-center px-4 py-10">
+      <div className="w-full max-w-sm">
+        <p className="text-center text-[11px] font-bold text-brand-orange tracking-widest mb-3">
+          ADMIN ACCESS &middot; SECURE SIGN-IN
+        </p>
 
-      <div className="relative w-full max-w-4xl min-h-[560px] rounded-3xl overflow-hidden border border-white/50 bg-white/30 backdrop-blur-2xl shadow-2xl">
-        {/* Fixed form slots */}
-        <div className="grid md:grid-cols-2 min-h-[560px]">
-          <div className="flex items-center justify-center px-8 py-12">
-            <ForgotPasswordForm onBackClick={() => setMode("signin")} />
-          </div>
-          <div className="flex items-center justify-center px-8 py-12">
-            <SignInForm onForgotClick={() => setMode("forgot")} />
-          </div>
-        </div>
-
-        {/* Sliding orange glass panel — desktop only */}
-        <div
-          className={`hidden md:flex absolute top-0 h-full w-1/2 bg-brand-orange/25 backdrop-blur-2xl border-x border-white/40 text-white flex-col justify-center px-12 transition-transform duration-500 ease-in-out ${
-            mode === "signin" ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
+        <h1 className="text-center text-[32px] md:text-[38px] font-black leading-[1.1] mb-3">
           {mode === "signin" ? (
             <>
-              <span className="text-2xl font-black text-white drop-shadow-sm mb-6">AttendPAC</span>
-              <FeatureCarousel />
-              <button
-                onClick={() => setMode("forgot")}
-                className="mt-8 rounded-pill-lg border border-white/60 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-bold text-white hover:bg-white/20 transition-colors self-start"
-              >
-                Forgot your password?
-              </button>
+              <span className="text-brand-orange">See where your team is</span>{" "}
+              <span className="text-brand-darkGray">right now.</span>
             </>
-  
           ) : (
             <>
-              <span className="text-2xl font-black text-white drop-shadow-sm mb-4">Forgot password?</span>
-              <p className="text-white/80 max-w-sm mb-8">
-                No problem. We&rsquo;ll send a reset link to your work email.
-              </p>
-              <button
-                onClick={() => setMode("signin")}
-                className="rounded-pill-lg border border-white/60 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-bold text-white hover:bg-white/20 transition-colors self-start"
-              >
-                Back to sign in
-              </button>
+              <span className="text-brand-orange">Reset</span>{" "}
+              <span className="text-brand-darkGray">your password.</span>
             </>
           )}
+        </h1>
+
+        <p className="text-center text-neutral-gray4 text-sm mb-6">
+          {mode === "signin"
+            ? "One dashboard. Every site, every shift, live."
+            : "We'll email you a link to get back in."}
+        </p>
+
+        {mode === "signin" ? (
+          <SignInForm onForgotClick={() => setMode("forgot")} />
+        ) : (
+          <ForgotPasswordForm onBackClick={() => setMode("signin")} />
+        )}
+      </div>
+
+      <div className="w-full max-w-4xl mt-14">
+        <p className="text-center text-[11px] font-bold text-neutral-gray2 tracking-widest mb-5">
+          TRUSTED BY GROWING TEAMS ACROSS EAST AFRICA
+        </p>
+        <div className="grid sm:grid-cols-3 gap-4">
+          {proof.map((p) => (
+            <div key={p.name} className="border border-neutral-lightBorder rounded-md p-4">
+              <div className="flex items-baseline gap-2 mb-1.5">
+                <span className={`text-base font-black ${p.statColor}`}>{p.stat}</span>
+                <span className="text-[10px] font-bold text-neutral-gray2 tracking-wide">{p.label}</span>
+              </div>
+              <p className="text-sm text-neutral-gray4 mb-3">&ldquo;{p.quote}&rdquo;</p>
+              <div className="flex items-center gap-2">
+                <span className="h-7 w-7 rounded-full bg-neutral-lightGray text-brand-darkGray text-[10px] font-bold flex items-center justify-center">
+                  {p.initials}
+                </span>
+                <div>
+                  <p className="text-xs font-bold text-brand-darkGray leading-tight">{p.name}</p>
+                  <p className="text-[11px] text-neutral-gray2 leading-tight">{p.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </main>

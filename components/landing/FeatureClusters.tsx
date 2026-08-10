@@ -1,3 +1,4 @@
+import Reveal from "@/components/motion/Reveal";
 import MagicBento from "@/components/MagicBento";
 import type { BentoCardProps } from "@/components/MagicBento";
 
@@ -43,35 +44,36 @@ const clusters: { title: string; cards: BentoCardProps[] }[] = [
 export default function FeatureClusters() {
   return (
     <section id="product" className="bg-brand-veryDarkGray py-12">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-2xl md:text-4xl font-black text-white mb-3">
-          Everything you need to manage attendance
-        </h2>
-        <p className="text-neutral-gray1 mb-12 max-w-2xl">
-          From clock-in to payroll export, built for teams that work on-site
-          and in the field
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {clusters.map((cluster) => (
-            <div key={cluster.title}>
-              <h3 className="text-white font-bold text-lg mb-4">{cluster.title}</h3>
-              <MagicBento
-                cards={cluster.cards}
-                layout="four"
-                glowColor="235, 87, 51"
-                enableStars
-                enableSpotlight
-                enableBorderGlow
-                enableTilt={false}
-                clickEffect
-                enableMagnetism
-                textAutoHide
-              />
-            </div>
-          ))}
+      <Reveal>
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-3">
+            Everything you need to manage attendance
+          </h2>
+          <p className="text-neutral-gray1 mb-12 max-w-2xl">
+            From clock-in to payroll export, built for teams that work on-site
+            and in the field
+          </p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {clusters.map((cluster) => (
+              <div key={cluster.title}>
+                <h3 className="text-white font-bold text-lg mb-4">{cluster.title}</h3>
+                <MagicBento
+                  cards={cluster.cards}
+                  layout="four"
+                  glowColor="235, 87, 51"
+                  enableStars
+                  enableSpotlight
+                  enableBorderGlow
+                  enableTilt={false}
+                  clickEffect
+                  enableMagnetism
+                  textAutoHide
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

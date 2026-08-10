@@ -13,7 +13,7 @@ const columns = [
   },
   {
     title: "Company",
-    links: ["About Us", "Careers", "Contact", "Terms", "Privacy"],
+    links: ["Terms", "Privacy"],
   },
 ];
 

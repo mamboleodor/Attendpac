@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScroll from "@/components/motion/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "AttendPAC — Attendance software that works where your team actually works",
@@ -26,7 +27,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+     <body>
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

@@ -32,32 +32,31 @@ export default function ForgotPasswordForm({ onBackClick }: { onBackClick: () =>
   }
 
   return (
-    <form onSubmit={handleForgotPassword} className="w-full max-w-sm flex flex-col gap-4">
-      <div>
-        <h2 className="text-xl font-bold text-brand-darkGray">Reset your password</h2>
-        <p className="text-sm text-neutral-gray3 mt-1">We&rsquo;ll email you a link to get back in.</p>
-      </div>
-
-      <label className="text-sm font-medium text-brand-darkGray">
+    <form onSubmit={handleForgotPassword} className="w-full flex flex-col gap-3">
+      <label className="text-sm font-bold text-brand-darkGray block">
         Work email
         <input
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@company.com"
-          className="mt-1 w-full rounded-sm border border-neutral-lightBorder px-3 py-2 text-sm"
+          placeholder="name@company.com"
+          className="mt-1 w-full rounded-md border border-neutral-lightBorder px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/40"
         />
       </label>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
       {message && <p className="text-sm text-success-green">{message}</p>}
 
-      <button type="submit" disabled={loading} className="btn-primary hover-bright w-full">
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full rounded-md bg-brand-orange text-white font-bold px-4 py-2.5 text-sm hover:brightness-110 transition-all"
+      >
         {loading ? "Sending…" : "Send reset link"}
       </button>
 
-      <button type="button" onClick={onBackClick} className="text-sm font-bold text-brand-orange md:hidden">
+      <button type="button" onClick={onBackClick} className="text-xs text-neutral-gray3 text-center hover:text-brand-orange">
         Back to sign in
       </button>
     </form>
